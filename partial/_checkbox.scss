@@ -1,0 +1,108 @@
+.checkbox {
+    position: relative;
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes zoom_in {
+        from {
+            transform: scale(0) rotate(270deg);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1) rotate(360deg);
+            opacity: 1;
+        }
+    }
+
+    .hoveredFocus {
+        span.empty {
+            svg circle {
+                stroke-dasharray: 0 0;
+            }
+        }
+    }
+
+    input {
+        position: absolute;
+        transform: scale(0);
+
+        &.spinning~label {
+            span.spinning {
+                display: grid !important;
+            }
+
+            span:not(.spinning) {
+                display: none !important;
+            }
+        }
+
+        &:checked:not(.spinning)~label {
+            span.checked {
+                display: grid !important;
+            }
+
+            span:not(.checked) {
+                display: none !important;
+            }
+        }
+
+        &:is(:focus)~label {
+            span {
+                outline: .2rem solid var(--blue);
+            }
+
+            span.empty {
+                svg circle {
+                    stroke-dasharray: 4 6 !important;
+                }
+            }
+        }
+
+        &:is(:hover)~label {
+
+            @extend .hoveredFocus;
+        }
+
+    }
+
+    label {
+        cursor: pointer;
+
+        span {
+            display: grid;
+            place-content: center;
+            margin: auto;
+            border-radius: var(--radius);
+
+            &.spinning {
+                svg {
+                    animation: rotate 1s linear infinite;
+                }
+            }
+
+            &.checked {
+                svg {
+                    animation: zoom_in 1s linear;
+                }
+            }
+
+            &:not(.empty) {
+                display: none;
+            }
+
+            svg {
+                transition: .2s ease-in all;
+            }
+        }
+
+    }
+}

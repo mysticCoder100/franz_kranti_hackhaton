@@ -1,0 +1,12 @@
+Screen Readers
+Arial attribute is good for screen readers
+
+aria-haspopup - for menu that has open and close.
+aria-expanded - for the state of the dropdown.
+aria-controls - the element the toggle butotn controls.
+
+-- dropdown menu
+role = "menu"
+arial-labelledBy - This is given to the dropdown menu to target the buton that triggers it, its is kind of the same with the aria-controls in the toggle button. 
+
+role="menuitem" -- this is for all menu item 

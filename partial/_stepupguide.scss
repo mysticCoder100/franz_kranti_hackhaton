@@ -1,0 +1,78 @@
+.step-guide {
+    box-shadow: 0 0 .3rem .1rem var(--shadow);
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        padding-block: var(--padding);
+
+        #card_toggler {
+            &[aria-expanded="false"] {
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        .title {
+            font-size: var(--fz-lg);
+        }
+
+        .text {
+            div:first-child {
+                margin-bottom: var(--padding);
+            }
+
+            p {
+                margin-top: var(--half_padding);
+                font-size: var(--fz-md);
+                color: var(--grey5);
+
+            }
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: var(--half_padding);
+            font-size: var(--fz-sm);
+            color: var(--grey5);
+
+            #stepper_progress {
+                // appearance: none;
+                height: .25rem;
+                width: 4.5rem;
+                border: 1px solid var(--grey1);
+                border-radius: 1.75rem;
+
+                &::-webkit-progress-bar {
+                    background: var(--grey3);
+                    border-radius: 1.75rem;
+                    // border-radius: 50%;
+                }
+
+                progress::-moz-progress-bar {
+                    transition: width 3s ease-in-out;
+                }
+
+                progress::-webkit-progress-value {
+                    transition: width 3s ease-in-out;
+                }
+
+                &::-webkit-progress-value {
+                    border-radius: 1.75rem;
+                    background: var(--grey1);
+                }
+
+            }
+        }
+
+        .btn {
+            padding: 0;
+            transform: scale(.7);
+            border: none;
+        }
+    }
+
+}

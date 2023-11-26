@@ -1,0 +1,127 @@
+@use "./responsive"as res;
+
+.step-guide-cards {
+    display: none;
+    grid-template-rows: 0;
+    overflow-y: hidden;
+
+
+    &.open {
+        display: grid;
+        overflow-y: visible;
+        grid-template-rows: 1fr;
+    }
+
+    ul {
+        padding-top: var(--half_padding);
+        list-style: none;
+
+        li {
+            &:not(:last-of-type) {
+                margin-bottom: var(--half_padding);
+            }
+        }
+
+
+        [role="menuitem"] {
+            width: 100%;
+            padding: var(--padding);
+            cursor: default;
+            border-radius: var(--radius);
+            background: none;
+            border: none;
+
+            &.open {
+                background: var(--grey3);
+
+                .info {
+                    display: grid;
+                    overflow-y: visible;
+                    grid-template-rows: 1fr;
+                }
+            }
+
+
+            .top {
+                display: flex;
+                cursor: pointer;
+                align-items: center;
+                gap: .75rem;
+                margin-block: var(--half_padding);
+
+                .title {
+                    font-size: var(--fz-md);
+                    font-weight: 600;
+                }
+            }
+
+            .info {
+                display: none;
+                overflow-y: hidden;
+                grid-template-rows: 0;
+                position: relative;
+            }
+
+            .btn,
+            .control {
+                justify-self: start;
+                font-size: var(--fz-sm);
+            }
+
+            .control {
+                display: flex;
+                align-items: center;
+                gap: var(--half_padding) calc(var(--padding) * 2);
+                flex-wrap: wrap;
+
+                p {
+                    font-size: var(--fz-sm);
+                }
+            }
+
+            .tail {
+                display: grid;
+                padding-inline: 2.5rem;
+
+                .text {
+                    display: flex;
+                    align-items: start;
+                    justify-content: space-between;
+                    gap: var(--padding);
+                    font-size: var(--fz-sm);
+                    margin-bottom: var(--padding);
+
+
+                    p {
+                        text-align: left;
+                        font-weight: 500;
+                        color: #616161;
+                        max-width: 28.241rem;
+                        line-height: 1.5;
+
+                        a {
+                            line-height: 1.225rem;
+                            text-decoration: none;
+                            color: var(--blue);
+                        }
+                    }
+
+
+
+                    .img {
+                        display: none;
+
+                        @include res.responsiveMedia(md) {
+                            display: block;
+                            position: absolute;
+                            right: 0;
+                            top: -2.5rem;
+                        }
+                    }
+
+                }
+
+            }
+        }
+    }
+}
