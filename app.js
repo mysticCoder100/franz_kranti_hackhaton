@@ -163,12 +163,15 @@ cardToggler.addEventListener("click", function () {
 
 function openCard(card) {
 	let isExpanded = card.ariaExpanded == "true";
+	let height = card.offsetHeight;
 	if (card.classList.contains("open")) return;
 	guideCards.forEach((card) => {
 		card.ariaExpanded = false;
 		card.classList.remove("open");
+		card.style.setProperty("--height", "0");
 	});
 	card.classList.add("open");
+	card.style.setProperty("--height", `${height}px`);
 	card.ariaExpanded = !isExpanded;
 }
 
@@ -176,26 +179,28 @@ guideCards.forEach((card) => {
 	card.addEventListener("click", () => openCard(card));
 });
 
-window.addEventListener("click", () => {
-	closeAllDropdown();
-});
-
-function handleBoxChecking(check, index) {
-	let ariaPolite = check.closest("li").querySelector("[aria-live='polite']");
+function setStepper() {
 	let stepper = document.querySelector("#step");
 	let stepperBar = document.querySelector("#stepper_progress");
 	let checkboxes = [...cardCheck];
 	let checkedboxes = checkboxes.filter((checkbox) => checkbox.checked).length;
 	let percentage = (checkedboxes / 5) * 100;
+
+	stepper.textContent = checkedboxes;
+	stepperBar.value = percentage;
+	stepperBar.textContent = `${percentage}%`;
+}
+
+function handleBoxChecking(check, index) {
+	let ariaPolite = check.closest("li").querySelector("[aria-live='polite']");
+
 	check.classList.add("spinning");
 
 	ariaPolite.ariaLabel = "Loading Please Wait ....";
 
 	setTimeout(() => {
 		check.classList.remove("spinning");
-		stepper.textContent = checkedboxes;
-		stepperBar.value = percentage;
-		stepperBar.textContent = `${percentage}%`;
+		setStepper();
 		let lastIndex = [...guideCards].length - 1;
 
 		if (!check.checked) {
@@ -233,19 +238,11 @@ function handleBoxChecking(check, index) {
 			);
 			nextUnCheckedBoxes = cardCheck[nextIndex];
 		}
+		let itemCard = nextUnCheckedBoxes.closest("[role='menuitem']");
 
 		setTimeout(() => {
-			let itemCard = nextUnCheckedBoxes.closest("[role='menuitem']");
-			let restCards = [...guideCards].filter((card) => card != itemCard);
-
-			restCards.forEach((card) => {
-				card.ariaExpanded = false;
-				card.classList.remove("open");
-			});
-
+			openCard(itemCard);
 			nextUnCheckedBoxes.focus();
-			itemCard.ariaExpanded = true;
-			itemCard.classList.add("open");
 		}, 500);
 	}, 1000);
 }
@@ -260,4 +257,8 @@ cardCheck.forEach((check, index) => {
 			handleBoxChecking(check, index);
 		}
 	});
+});
+
+window.addEventListener("load", () => {
+	setStepper();
 });
