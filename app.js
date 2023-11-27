@@ -200,9 +200,7 @@ function handleBoxChecking(check, index) {
 
 		if (!check.checked) {
 			ariaPolite.ariaLabel = "Guide Unchecked";
-			check.closest(".checkbox").ariaLabel = check
-				.closest(".checkbox")
-				.ariaLabel.replace("Checked", "Not Checked");
+			check.ariaLabel = check.ariaLabel.replace("Checked", "Not Checked");
 			return;
 		}
 
@@ -215,9 +213,7 @@ function handleBoxChecking(check, index) {
 		);
 
 		ariaPolite.ariaLabel = "Guide Checked";
-		check.closest(".checkbox").ariaLabel = check
-			.closest(".checkbox")
-			.ariaLabel.replace("Not Checked", "Checked");
+		check.ariaLabel = check.ariaLabel.replace("Not Checked", "Checked");
 
 		if (
 			allUnCheckedBoxesAfterTheCheckedBox.length <= 0 &&
@@ -250,7 +246,7 @@ function handleBoxChecking(check, index) {
 			nextUnCheckedBoxes.focus();
 			itemCard.ariaExpanded = true;
 			itemCard.classList.add("open");
-		}, 1000);
+		}, 500);
 	}, 1000);
 }
 cardCheck.forEach((check, index) => {
