@@ -262,3 +262,7 @@ cardCheck.forEach((check, index) => {
 window.addEventListener("load", () => {
 	setStepper();
 });
+
+window.addEventListener("click", () => {
+	closeAllDropdown();
+});

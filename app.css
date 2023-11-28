@@ -542,13 +542,11 @@ body {
 
 .step-guide-cards {
   display: none;
-  grid-template-rows: 0;
   overflow-y: hidden;
 }
 .step-guide-cards.open {
   display: grid;
   overflow-y: visible;
-  grid-template-rows: 1fr;
 }
 .step-guide-cards ul {
   padding-top: var(--half_padding);
@@ -571,7 +569,6 @@ body {
 .step-guide-cards ul [role=menuitem].open .info {
   display: grid;
   overflow-y: visible;
-  grid-template-rows: 1fr;
 }
 .step-guide-cards ul [role=menuitem] .top {
   display: flex;
@@ -587,7 +584,6 @@ body {
 .step-guide-cards ul [role=menuitem] .info {
   display: none;
   overflow-y: hidden;
-  grid-template-rows: 0;
   position: relative;
 }
 .step-guide-cards ul [role=menuitem] .btn,

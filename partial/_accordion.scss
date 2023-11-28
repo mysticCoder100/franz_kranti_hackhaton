@@ -2,14 +2,12 @@
 
 .step-guide-cards {
     display: none;
-    grid-template-rows: 0;
     overflow-y: hidden;
 
 
     &.open {
         display: grid;
         overflow-y: visible;
-        grid-template-rows: 1fr;
     }
 
     ul {
@@ -37,7 +35,6 @@
                 .info {
                     display: grid;
                     overflow-y: visible;
-                    grid-template-rows: 1fr;
                 }
             }
 
@@ -58,7 +55,6 @@
             .info {
                 display: none;
                 overflow-y: hidden;
-                grid-template-rows: 0;
                 position: relative;
             }
 
